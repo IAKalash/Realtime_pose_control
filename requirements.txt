@@ -1,5 +1,5 @@
-cv2
+opencv-python
 mediapipe
 numpy
 pathlib
-skimage
+scikit-image
