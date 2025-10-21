@@ -55,6 +55,7 @@ def main():
     try:
         cap = cv2.VideoCapture(source)
         if not cap.isOpened():
+            cap.release()
             raise ValueError("Error opening source!")
     except Exception as e:
         print(f"Error: {e}")
@@ -69,14 +70,14 @@ def main():
             break
 
         try:
-            print(detect_tiredness(frame, 0.2, pose_detector))
+            print(detect_tiredness(frame, pose_detector, 0.2))
 
             # Only for visualizing points. Not recommended for use in real code. 
             # Partially duplicates the detect_tiredness function
-            landmarks = pose.detect_pose_landmarks(pose_detector, frame)
-            custom_connections = pose.create_custom_connections()
-            drawing_specs = pose.create_green_drawing_spec()
-            pose.draw_custom_pose_landmarks(frame, landmarks, custom_connections, drawing_specs)
+            # landmarks = pose.detect_pose_landmarks(pose_detector, frame)
+            # custom_connections = pose.create_custom_connections()
+            # drawing_specs = pose.create_green_drawing_spec()
+            # pose.draw_custom_pose_landmarks(frame, landmarks, custom_connections, drawing_specs)
             # End of visualization block
         
         except Exception as e:
